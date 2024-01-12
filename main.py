@@ -4,7 +4,6 @@ import requests
 from headers import headers
 
 
-
 def get_headers():
     return headers[randrange(0, 4)]
 
@@ -23,7 +22,6 @@ def get_id():
                 print('id has not found')
         else:
             print(data['message'])
-
 
 
 def get_gift(url_id, header):
@@ -58,4 +56,4 @@ def main(header, url_id, answer):
 
 
 if __name__ == '__main__':
-    main()
+    thread()
