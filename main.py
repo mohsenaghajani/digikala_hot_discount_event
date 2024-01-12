@@ -5,7 +5,7 @@ from headers import headers
 
 
 def get_headers():
-    return headers[randrange(0, 1)]
+    return headers[randrange(0, 4)]
 
 
 def get_id():
@@ -20,7 +20,7 @@ def get_id():
 
 
 def get_gift(url_id, header):
-    product_id = {'product_id': '384261'}
+    product_id = {'product_id': '12212857'}
     url = f'https://api.digikala.com/v1/hot-discount-assign/{url_id}/'
     response = requests.post(url, headers=header, json=product_id)
     get_status = response.json()
@@ -28,10 +28,10 @@ def get_gift(url_id, header):
 
 
 def main():
-    count = 10
+    answer = 6
     url_id = get_id()
     for header in headers:
-        answer = {'answer': count}
+        answer = {'answer': answer}
         response = requests.post(f'https://api.digikala.com/v1/hot-discount-captcha/{url_id}/',
                                  json=answer,
                                  headers=header)
@@ -39,10 +39,10 @@ def main():
         try:
             if check_answer['data']['is_correct'] is True:
                 get_gift(url_id, header)
-        except print(check_answer):
+        except:
             print(check_answer)
         else:
-            count += 1
+            answer += 1
 
 
 if __name__ == '__main__':
