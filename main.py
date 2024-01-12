@@ -1,8 +1,7 @@
-
 from random import randrange
 import requests
 from headers import headers
-
+import time
 
 def get_headers():
     return headers[randrange(0, 4)]
@@ -38,13 +37,13 @@ def main():
                                  json=answer,
                                  headers=header)
         check_answer = response.json()
-        try:
+        if check_answer['status'] == 200:
             if check_answer['data']['is_correct'] is True:
                 get_gift(url_id, header)
-        except:
-            print(check_answer)
+            else:
+                answer += 1
         else:
-            answer += 1
+            print(check_answer['message'])
 
 
 if __name__ == '__main__':
