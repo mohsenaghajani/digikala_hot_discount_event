@@ -1,4 +1,4 @@
-import time
+
 from random import randrange
 import requests
 from headers import headers
@@ -39,7 +39,7 @@ def main():
         try:
             if check_answer['data']['is_correct'] is True:
                 get_gift(url_id, header)
-        except:
+        except print(check_answer):
             print(check_answer)
         else:
             count += 1
