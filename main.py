@@ -12,11 +12,13 @@ def get_id():
     while True:
         url = 'https://api.digikala.com/v1/hot-discount/'
         response = requests.get(url, headers=get_headers())
-        if response.status_code == 200:
-            data = response.json()
+        data = response.json()
+        if data['status'] == 200:
             url_id = data['data']['active_hot_discount']['id']
             print(url_id)
             return url_id
+        else:
+            print(data['message'])
 
 
 def get_gift(url_id, header):
