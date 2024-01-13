@@ -29,7 +29,11 @@ def get_gift(url_id, header):
     url = f'https://api.digikala.com/v1/hot-discount-assign/{url_id}/'
     response = requests.post(url, headers=header, json=product_id)
     get_status = response.json()
+    init_url = 'https://api.digikala.com/v1/user/init/'
+    get_user_winner = requests.get(init_url, headers=header)
     print(get_status['data'])
+    user = get_user_winner.json()
+    print(user['data']['user'])
 
 
 def thread():
